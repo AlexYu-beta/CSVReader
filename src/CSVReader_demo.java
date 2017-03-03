@@ -1,3 +1,5 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -112,18 +114,28 @@ public class CSVReader_demo {
     }
 
     public static void main(String args[])throws Exception{
+        long read_start=System.currentTimeMillis();         //start the timer
         CSVReader_demo parser=new CSVReader_demo("/home/alex/Documents/ProjectDataSources/股票历史数据ALL.csv",";");
         Object[] arr=parser.getParsedArray();
+        long itemNum=0;
+        long read_end=System.currentTimeMillis();
         for(Object obj:arr){
-            System.out.print("[");
-
+            itemNum++;
             List<String> ls=(List<String>)obj;
 
             for(String item:ls){
-                System.out.println(item+",");
+                if(itemNum==1){
+                    System.out.println(item+" , ");
+                }
+                System.out.println(item+" , ");
             }
 
-            System.out.println("],");
+            System.out.println(" ,");
         }
+        long print_end=System.currentTimeMillis();
+        System.out.println(itemNum);
+                  //pause the timer
+        System.out.println("it takes:  "+(read_end-read_start)/1000.0+" seconds to finish reading csv file");
+        System.out.println("it takes:  "+(print_end-read_end)/1000.0+" seconds to finish printing csv file");
     }
 }
