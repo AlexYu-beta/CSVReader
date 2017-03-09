@@ -20,23 +20,31 @@ public class CSVReader_API {
         String[] line=new String[10];
         int i;
         while(reader.readRecord()){
-            for(i=0;i<10;i++){
-                line[i]=reader.get(i);
-            }
-            csvList.add(line);
+            csvList.add(reader.getValues());
         }
         reader.close();
-        long read_end=System.currentTimeMillis();
+//        long read_end=System.currentTimeMillis();
+//        for(int row=0;row<csvList.size();row++){
+//            for(i=0;i<11;i++){
+//                System.out.print(csvList.get(row)[i]+" , ");
+//            }
+//            System.out.println();
+//
+//        }
+//        long print_end=System.currentTimeMillis();
+//        System.out.println("it takes:  "+(read_end-read_start)/1000.0+" seconds to finish reading csv file");
+//        System.out.println("it takes:  "+(print_end-read_end)/1000.0+" seconds to finish printing csv file");
+        int countA=0;
+        int countB=0;
+        int countC=0;
         for(int row=0;row<csvList.size();row++){
-            for(i=0;i<10;i++){
-                System.out.print(csvList.get(row)[i]+" , ");
-            }
-            System.out.println();
-
+            if(csvList.get(row)[8].compareTo("402")==0){
+                countA++;
+            }else if(csvList.get(row)[8].compareTo("402")<0){
+                countB++;
+            }else countC++;
         }
-        long print_end=System.currentTimeMillis();
-        System.out.println("it takes:  "+(read_end-read_start)/1000.0+" seconds to finish reading csv file");
-        System.out.println("it takes:  "+(print_end-read_end)/1000.0+" seconds to finish printing csv file");
+        System.out.println(countA+"  "+countB+"  "+countC);
 
     }
 }
