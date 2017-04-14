@@ -16,11 +16,12 @@ paths = ['',
  '/usr/lib/pymodules/python2.7',
  '/usr/lib/python2.7/dist-packages/IPython/extensions']
 paths = sys.path
+"""
 count = 0
 for path in paths:
 	sys.path.insert(count, path)
 	count = count + 1
-"""
+
 from pandas import DataFrame,read_csv
 data = read_csv('/home/alex/Documents/ProjectDataSources/股票历史数据ALL.csv', sep='\t')
 
